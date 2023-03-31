@@ -1,0 +1,8 @@
+databaseChangeLog:
+  -  changeSet:
+       id:  "202303301153"
+       author:  ccaballol
+       changes:
+         -  sqlFile:
+              path:  changelogs/data/202303301153_insert_currencies.sql
+              relativeToChangelogFile: true

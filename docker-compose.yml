@@ -1,0 +1,16 @@
+version: '2.4'
+services:
+  postgres:
+    container_name: postgres
+    image: postgres:15.2
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-postgres}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-myPassword}
+      POSTGRES_DB: portal
+      POSTGRES_INITDB_ARGS: '--encoding=UTF-8'
+      PGDATA: /data/postgres
+    volumes:
+      - /data/postgres
+    ports:
+      - "5432:5432"
+    restart: unless-stopped
