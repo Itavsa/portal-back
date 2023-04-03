@@ -44,7 +44,7 @@ databaseChangeLog:
                   constraints:
                     nullable: false
         - createTable:
-            tableName: article
+            tableName: product
             columns:
               - column:
                   name: id
@@ -68,14 +68,14 @@ databaseChangeLog:
                   type: int
                   constraints:
                     nullable: false
-                    foreignKeyName: fk_currency_article
+                    foreignKeyName: fk_currency_product
                     references: currency(id)
               - column:
                   name: type_id
                   type: bigint
                   constraints:
                     nullable: false
-                    foreignKeyName: fk_type_article
+                    foreignKeyName: fk_type_product
                     references: type(id)
               - column:
                   name: description
@@ -104,23 +104,23 @@ databaseChangeLog:
                   constraints:
                     nullable: false
         - createTable:
-            tableName: article_picture
+            tableName: product_picture
             columns:
               - column:
-                  name: article_id
+                  name: product_id
                   type: bigint
                   constraints:
                     primaryKey: true
                     nullable: false
-                    foreignKeyName: fk_article_article_picture
-                    references: article(id)
+                    foreignKeyName: fk_product_product_picture
+                    references: product(id)
               - column:
                   name: picture_id
                   type: bigint
                   constraints:
                     primaryKey: true
                     nullable: false
-                    foreignKeyName: fk_picture_article_picture
+                    foreignKeyName: fk_picture_product_picture
                     references: picture(id)
         - createTable:
             tableName: tag
@@ -138,23 +138,23 @@ databaseChangeLog:
                   constraints:
                     nullable: false
         - createTable:
-            tableName: article_tag
+            tableName: product_tag
             columns:
               - column:
-                  name: article_id
+                  name: product_id
                   type: bigint
                   constraints:
                     primaryKey: true
                     nullable: false
-                    foreignKeyName: fk_article_article_tag
-                    references: article(id)
+                    foreignKeyName: fk_product_product_tag
+                    references: product(id)
               - column:
                   name: tag_id
                   type: bigint
                   constraints:
                     primaryKey: true
                     nullable: false
-                    foreignKeyName: fk_tag_article_tag
+                    foreignKeyName: fk_tag_product_tag
                     references: tag(id)
         - createTable:
             tableName: type_tag

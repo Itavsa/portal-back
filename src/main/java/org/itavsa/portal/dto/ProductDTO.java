@@ -8,7 +8,7 @@ import java.util.Set;
 
 @Value
 @Builder
-public class ArticleDTO {
+public class ProductDTO {
     String title;
     BigDecimal price;
     CurrencyDTO currency;

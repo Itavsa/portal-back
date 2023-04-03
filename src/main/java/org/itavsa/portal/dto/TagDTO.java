@@ -9,5 +9,5 @@ import java.util.Set;
 @Builder
 public class TagDTO {
     String name;
-    Set<ArticleDTO> articles;
+    Set<ProductDTO> products;
 }

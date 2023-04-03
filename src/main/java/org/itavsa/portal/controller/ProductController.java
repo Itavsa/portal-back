@@ -1,8 +1,8 @@
 package org.itavsa.portal.controller;
 
 import lombok.AllArgsConstructor;
-import org.itavsa.portal.dto.ArticleDTO;
-import org.itavsa.portal.service.ArticleService;
+import org.itavsa.portal.dto.ProductDTO;
+import org.itavsa.portal.service.ProductService;
 import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -12,13 +12,13 @@ import java.util.List;
 
 @RestController
 @AllArgsConstructor
-public class ArticleController {
+public class ProductController {
 
-    private final ArticleService articleService;
+    private final ProductService productService;
 
-    @GetMapping("/articles")
-    public List<ArticleDTO> getAll(@RequestParam("page") int page, @RequestParam("size") int size) {
-        Page<ArticleDTO> result = this.articleService.getPage(page, size);
+    @GetMapping("/products")
+    public List<ProductDTO> getAll(@RequestParam("page") int page, @RequestParam("size") int size) {
+        Page<ProductDTO> result = this.productService.getPage(page, size);
         return result.getContent();
     }
 }

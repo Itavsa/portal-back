@@ -20,5 +20,5 @@ public class Type {
     private String name;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "type")
-    private Set<Article> articles = new HashSet<>();
+    private Set<Product> products = new HashSet<>();
 }

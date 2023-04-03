@@ -14,7 +14,7 @@ import java.util.Set;
 @Entity
 @Getter
 @Setter
-public class Article {
+public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private BigInteger id;
@@ -40,16 +40,16 @@ public class Article {
 
     @ManyToMany
     @JoinTable(
-            name = "article_picture",
-            joinColumns = { @JoinColumn(name = "article_id") },
+            name = "product_picture",
+            joinColumns = { @JoinColumn(name = "product_id") },
             inverseJoinColumns = { @JoinColumn(name = "picture_id") }
     )
     private Set<Picture> pictures = new HashSet<>();
 
     @ManyToMany
     @JoinTable(
-            name = "article_tag",
-            joinColumns = { @JoinColumn(name = "article_id") },
+            name = "product_tag",
+            joinColumns = { @JoinColumn(name = "product_id") },
             inverseJoinColumns = { @JoinColumn(name = "tag_id") }
     )
     private Set<Tag> tags = new HashSet<>();
