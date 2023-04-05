@@ -14,7 +14,7 @@ public class ProductService {
     private final ProductRepository productRepository;
     private final ProductMapper productMapper;
 
-    public Page<ProductDTO> getPage(int page, int size) {
-        return productRepository.findAll(Pageable.ofSize(size).withPage(page)).map(productMapper::toDto);
+    public Page<ProductDTO> getPage(Pageable page) {
+        return productRepository.findAll(page).map(productMapper::toDto);
     }
 }
