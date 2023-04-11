@@ -14,3 +14,10 @@ services:
     ports:
       - "5432:5432"
     restart: unless-stopped
+  portal-back:
+    container_name: portal-back
+    image: portal-back:0.0.1-SNAPSHOT
+    environment:
+      - "SPRING_PROFILES_ACTIVE=docker"
+    ports:
+      - "8080:8080"
