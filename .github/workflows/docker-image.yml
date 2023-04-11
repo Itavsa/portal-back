@@ -5,15 +5,21 @@ on:
   pull_request:
     branches: [ "main" ]
 jobs:
-  build:
+  getVersion:
+    runs-on: ubuntu-latest
+    container: maven:3.9-amazoncorretto-20
+    steps:
+    - uses: actions/checkout@v3
+    - name: Get project version from pom.xml
+      run: |
+        VERSION=$( mvn help:evaluate -Dexpression=project.version -q -DforceStdout )
+        echo "::set-output name=version::$VERSION"
+  buildPush:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3
-    - name: Get Project Version from pom.xml
-      id: getProjectVersion
-      uses: entimaniac/read-pom-version-action@1.0.0
     - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag ghcr.io/itavsa/portal-back:${{ steps.getProjectVersion.outputs.version }}
+      run: docker build . --file Dockerfile --tag ghcr.io/itavsa/portal-back:${{ needs.getVersion.outputs.version }}
     - name: Login to GitHub Container Registry
       uses: docker/login-action@v1
       with:
