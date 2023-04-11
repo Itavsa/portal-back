@@ -18,10 +18,12 @@ jobs:
   buildPush:
     needs: getProjectVersion
     runs-on: ubuntu-latest
+    env:
+        VERSION: ${{ needs.getProjectVersion.outputs.version }}
     steps:
     - uses: actions/checkout@v3
     - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag ghcr.io/itavsa/portal-back:${{ needs.getProjectVersion.outputs.version }}
+      run: docker build . --file Dockerfile --tag ghcr.io/itavsa/portal-back:$VERSION
     - name: Login to GitHub Container Registry
       uses: docker/login-action@v1
       with:
@@ -29,4 +31,4 @@ jobs:
         username: ${{github.actor}}
         password: ${{secrets.GITHUB_TOKEN}}
     - name: Push the Docker image
-      run: docker push ghcr.io/itavsa/portal-back:${{ steps.getProjectVersion.outputs.version }}
+      run: docker push ghcr.io/itavsa/portal-back:$VERSION
