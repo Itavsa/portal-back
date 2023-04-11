@@ -12,9 +12,7 @@ jobs:
     - uses: actions/checkout@v3
     - name: Get project version from pom.xml
       id: getVersion
-      run: |
-        VERSION=$( mvn help:evaluate -Dexpression=project.version -q -DforceStdout )
-        echo "{version}={$VERSION}" >> $GITHUB_OUTPUT
+      run: echo version=$(mvn help:evaluate -Dexpression=project.version -q -DforceStdout) >> $GITHUB_OUTPUT
     outputs:
       version: ${{ steps.getVersion.outputs.version }}
   buildPush:
