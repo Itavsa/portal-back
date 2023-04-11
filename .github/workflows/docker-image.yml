@@ -11,9 +11,12 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     - name: Get project version from pom.xml
+      id: getVersion
       run: |
         VERSION=$( mvn help:evaluate -Dexpression=project.version -q -DforceStdout )
-        echo "::set-output name=version::$VERSION"
+        echo "{version}={$VERSION}" >> $GITHUB_OUTPUT
+    outputs:
+      version: ${{ steps.getVersion.outputs.version }}
   buildPush:
     needs: getProjectVersion
     runs-on: ubuntu-latest
