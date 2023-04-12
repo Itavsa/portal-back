@@ -20,6 +20,8 @@ jobs:
     runs-on: ubuntu-latest
     env:
         VERSION: ${{ needs.getProjectVersion.outputs.version }}
+    permissions:
+      packages: write
     steps:
     - uses: actions/checkout@v3
     - name: Build the Docker image
