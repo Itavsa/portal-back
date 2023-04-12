@@ -16,7 +16,7 @@ services:
     restart: unless-stopped
   portal-back:
     container_name: portal-back
-    image: portal-back:0.0.1-SNAPSHOT
+    image: ghcr.io/itavsa/portal-back:0.0.1-SNAPSHOT
     environment:
       - "SPRING_PROFILES_ACTIVE=docker"
     ports:
