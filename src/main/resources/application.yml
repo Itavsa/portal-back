@@ -1,0 +1,39 @@
+spring:
+  liquibase:
+    changeLog: classpath:db/changelog/changelog-master.yml
+  datasource:
+    url:
+    username:
+    password:
+  jpa:
+    properties:
+      hibernate:
+        jdbc:
+          lob:
+            non_contextual_creation: true
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+  data:
+    web:
+      pageable:
+        one-indexed-parameters: true
+
+origins:
+jwt-issuer:
+
+com:
+  c4-soft:
+    springaddons:
+      security:
+        cors:
+          - path: /**
+            allowed-origins: ${origins}
+        issuers:
+          - location: ${jwt-issuer}
+            username-claim: preferred_username
+            authorities:
+              - path: $.realm_access.roles
+              - path: $.resource_access.*.roles
+        permit-all:
+          - "/actuator/health/readiness"
+          - "/actuator/health/liveness"
+          - "/v3/api-docs/**"

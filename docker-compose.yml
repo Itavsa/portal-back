@@ -1,19 +1,45 @@
 version: '2.4'
 services:
-  postgres:
-    container_name: postgres
+  db:
+    container_name: db
     image: postgres:15.2
     environment:
       POSTGRES_USER: ${POSTGRES_USER:-postgres}
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-myPassword}
-      POSTGRES_DB: portal
-      POSTGRES_INITDB_ARGS: '--encoding=UTF-8'
       PGDATA: /data/postgres
     volumes:
-      - /data/postgres
+      - db:/data/postgres
+      - ./docker/db:/docker-entrypoint-initdb.d
     ports:
       - "5432:5432"
     restart: unless-stopped
+  auth:
+    container_name: auth
+    image: quay.io/keycloak/keycloak:21.1.1
+    ports:
+      - "8442:8080"
+    environment:
+      KEYCLOAK_ADMIN: ${KEYCLOAK_ADMIN:-admin}
+      KEYCLOAK_ADMIN_PASSWORD: ${KEYCLOAK_ADMIN_PASSWORD:-admin}
+    command:
+      - start-dev
+      - --db-url
+      - jdbc:postgresql://db:5432/keycloak
+      - --db
+      - postgres
+      - --db-username
+      - ${POSTGRES_USER:-postgres}
+      - --db-password
+      - ${POSTGRES_PASSWORD:-myPassword}
+      - --import-realm
+    volumes:
+      - ./docker/auth/portal_realm.json/:/opt/keycloak/data/import/portal_realm.json:ro
+  smtp:
+    container_name: smtp
+    image: dockage/mailcatcher:0.8.2
+    ports:
+      - "1080:1080"
+      - "1025:1025"
   portal-back:
     container_name: portal-back
     image: ghcr.io/itavsa/portal-back:0.0.1-SNAPSHOT
@@ -21,3 +47,5 @@ services:
       - "SPRING_PROFILES_ACTIVE=docker"
     ports:
       - "8080:8080"
+volumes:
+  db:

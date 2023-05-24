@@ -1,0 +1,13 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/portal
+    username: postgres
+    password: myPassword
+  jpa:
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+
+origins: http://localhost:4200
+jwt-issuer: http://localhost:8442/realms/portal

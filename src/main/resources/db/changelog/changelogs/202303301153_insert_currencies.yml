@@ -4,5 +4,5 @@ databaseChangeLog:
        author:  ccaballol
        changes:
          -  sqlFile:
-              path:  changelogs/data/202303301153_insert_currencies.sql
+              path:  data/202303301153_insert_currencies.sql
               relativeToChangelogFile: true

@@ -1,0 +1,4 @@
+CREATE DATABASE portal
+    ENCODING "UTF-8";
+CREATE DATABASE keycloak
+    ENCODING "UTF-8";
