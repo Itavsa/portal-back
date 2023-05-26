@@ -1,0 +1,13 @@
+databaseChangeLog:
+  -  changeSet:
+       id:  "202305251734"
+       author:  ccaballol
+       changes:
+         -  addUniqueConstraint:
+              columnNames:  name
+              tableName:  tag
+              validate:  true
+         -  addUniqueConstraint:
+              columnNames: name
+              tableName: type
+              validate: true

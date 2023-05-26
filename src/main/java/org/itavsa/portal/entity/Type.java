@@ -16,7 +16,7 @@ public class Type {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private BigInteger id;
 
-    @Column(length = 64, nullable = false)
+    @Column(length = 64, nullable = false, unique=true)
     private String name;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "type")
