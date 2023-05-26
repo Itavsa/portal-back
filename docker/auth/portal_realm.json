@@ -61,7 +61,7 @@
           "algorithm":"pbkdf2-sha256"
         }
       ],
-      "realmRoles" : [ ]
+      "realmRoles" : [ "default-roles-portal" ]
     }
   ],
   "roles": {
@@ -100,15 +100,6 @@
         "id": "69e3a53d-2a59-4e83-80e8-ab2604594e8c",
         "name": "uma_authorization",
         "description": "${role_uma_authorization}",
-        "composite": false,
-        "clientRole": false,
-        "containerId": "b8c55bb5-e327-4510-bdcd-d2c9a8b9f2e5",
-        "attributes": {}
-      },
-      {
-        "id": "ca04472b-134c-44a7-9418-68e445eede36",
-        "name": "portal_admin",
-        "description": "",
         "composite": false,
         "clientRole": false,
         "containerId": "b8c55bb5-e327-4510-bdcd-d2c9a8b9f2e5",
